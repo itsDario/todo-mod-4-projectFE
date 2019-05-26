@@ -1,0 +1,25 @@
+span.hamburger-box{
+    float: left;
+}
+
+span.UserDash{
+    text-align: center;
+    font-size: 20px;
+    float: right;
+}
+
+button {
+    display: inline-block;
+    text-align: center;
+    padding: 18px 32px;
+}
+
+div.Navbar{
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+    border-style: ridge;
+    border-width: 5px;
+    border-color: blue;
+    background-color: rgb(160, 217, 224);
+}
