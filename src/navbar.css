@@ -9,17 +9,28 @@ span.UserDash{
 }
 
 button {
+    height:100%;
     display: inline-block;
     text-align: center;
-    padding: 18px 32px;
+    font-size: 24px;
+    padding: 18px 22px;
+    border-style: none;
+    background-color: rgb(145, 228, 214); 
+}
+
+span.hamburger-box{
+    float: left;
 }
 
 div.Navbar{
-    width: 100%;
+    width: 100vw;
+    height: 7vh;
     display: inline-block;
     box-sizing: border-box;
-    border-style: ridge;
-    border-width: 5px;
-    border-color: blue;
-    background-color: rgb(160, 217, 224);
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    /* background: radial-gradient(rgb(160, 217, 224),rgb(119, 119, 235)); */
+    /* background: linear-gradient(#00838f, #439889); */
+    background-color: rgb(145, 228, 214);
 }
