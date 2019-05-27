@@ -9,7 +9,7 @@ const Navbar = (props) => {
 
         if (props.menuBtnState === false){
             return (
-                <button className="hamburger hamburger--vortex" onClick={props.hamburgerBtn} type="button">
+                <button className="hamburger hamburger--spring" onClick={props.hamburgerBtn} type="button">
                     <span className="hamburger-box">
                         <span className="hamburger-inner"></span>
                     </span>
@@ -17,7 +17,7 @@ const Navbar = (props) => {
         }
         else{
             return (
-                <button className="hamburger hamburger--vortex is-active" onClick={props.hamburgerBtn} type="button">
+                <button className="hamburger hamburger--spring is-active" onClick={props.hamburgerBtn} type="button">
                     <span className="hamburger-box">
                         <span className="hamburger-inner"></span>  
                     </span>

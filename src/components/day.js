@@ -5,8 +5,8 @@ export default class Day extends React.Component{
     
     
     render(){
-        return <div>
+        return <span className='day'>
 
-        </div>
+        </span>
     }
 }

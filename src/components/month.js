@@ -7,14 +7,14 @@ export default class Month extends React.Component{
         month: this.props.today.split(' ')[1]
     }
 
-    createDays = () => {
-        return <div></div>
-    }
+    // createDays = () => {
+    //     return <div></div>
+    // }
 
     render(){
         return <div className='month'>
             {this.state.month}
-            {this.createDays()}
+            {/* {this.createDays()} */}
         </div>
     }
 }
