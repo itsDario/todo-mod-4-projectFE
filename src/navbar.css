@@ -9,25 +9,18 @@ span.UserDash{
 }
 
 button {
-    height:100%;
-    display: inline-block;
     text-align: center;
     font-size: 24px;
     padding: 18px 22px;
     border-style: none;
     border-left: 2px solid black;
     background-color: #729FC1;
-    /* background-color: rgba(226, 62, 33, 0.822); */
     color: rgb(228, 225, 222);
 }
 
-span.hamburger-box{
-    float: left;
-}
-
 div.Navbar{
-    width: 100vw;
-    height: 7vh;
+    width: 100%;
+    height: 7%;
     display: inline-block;
     box-sizing: border-box;
     border-style: solid;
@@ -35,5 +28,10 @@ div.Navbar{
     border-color: black;
     background-color: #729FC1;
     box-shadow: 2px 5px 5px #333;
-    /* background-color: rgba(226, 62, 33, 0.822); */
 }
+
+/* span.title {
+    font-size: 36px;
+    margin-left: 600px;
+    color: white;
+} */

@@ -1,7 +1,6 @@
 import React from 'react';
 import '../hamburgers.css';
 import '../navbar.css';
-import { userInfo } from 'os';
 
 const Navbar = (props) => {
 
@@ -29,7 +28,7 @@ const Navbar = (props) => {
 
         return <span className='UserDash'>
             <button className='messages' onClick={()=>{alert('Goes to Messages')}}>Messages</button>
-            <button onClick={()=>{alert('Opens User Drawdown')}}>Welcome {props.usrName}!</button>
+            <button onClick={()=>{alert('Opens User Drawdown')}}>Welcome {props.username}!</button>
         </span>
     }
 
