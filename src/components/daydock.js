@@ -24,6 +24,17 @@ export default class DayDock extends React.Component {
         })
     }
 
+    createOptions = () => {
+        fetch('http://localhost:3000/calendars')
+        .then(resp=>resp.json())
+        .then(json=>{return json.map((calendar)=>{
+                return <div id={calendar.id}>
+                    {calendar.name}
+                </div>
+            })
+        })
+    }
+
     showDock = () => {
         if (!this.state.form) {
             return <Fragment>
@@ -46,6 +57,9 @@ export default class DayDock extends React.Component {
                     <input name='name' type='text' placeholder='Enter event name here...' /><br /><br />
                     <label>Description</label><br />
                     <textarea name='desc' placeholder='(Optional) Enter event description here...' /><br /><br />
+                    <select name='calendar-select'>
+                        {this.createOptions()}
+                    </select>
                     <input type='submit' value='submit' />
                 </form>
             </Fragment>
