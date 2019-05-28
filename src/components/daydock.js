@@ -8,30 +8,31 @@ export default class DayDock extends React.Component {
         events: [],
     }
 
-    // componentDidMount(){
-    //     fetch(`http://localhost:3000/events/${this.props.spotlight}`)
-    //     .then(resp=>resp.json())
-    //     .then(json=>{
-    //         this.setState({
-    //             events: json
-    //         })
-    //     })
-    // }
+    createOptions = () => {
+        return this.props.calendars.map((calendar)=>{
+            return <option key={calendar.id} value={calendar.id}>
+                {calendar.name}
+            </option>
+        })
+    }
+
+    createEvents = () => {
+        return this.props.events.map(
+            event=><li key={event.id}>Name: {event.name}</li>
+        )
+    }
+
+    submitEvent = (event) => {
+        this.props.addEvent(event)
+        this.setState({
+            form: false,
+        })
+        return null
+    }
 
     handleClick = () => {
         this.setState({
             form: !this.state.form
-        })
-    }
-
-    createOptions = () => {
-        fetch('http://localhost:3000/calendars')
-        .then(resp=>resp.json())
-        .then(json=>{return json.map((calendar)=>{
-                return <div id={calendar.id}>
-                    {calendar.name}
-                </div>
-            })
         })
     }
 
@@ -41,10 +42,7 @@ export default class DayDock extends React.Component {
                 <h2>{this.state.date.toDateString()}</h2>
                 <h2> Events </h2>
                 <ul className='events-list'>
-                    <li>Event 1</li>
-                    <li>Event 2</li>
-                    <li>Event 3</li>
-                    <li>Event 4</li>
+                    {this.createEvents()}
                 </ul>
                 <button className='create-event' onClick={this.handleClick}>Create Event</button>
             </Fragment>
@@ -52,14 +50,15 @@ export default class DayDock extends React.Component {
         else if (this.state.form) {
             return <Fragment>
                 <h2>Create New Event</h2>
-                <form className='events-form' onSubmit={(e) => this.props.addEvent(e, this.state.date)}>
+                <form className='events-form' onSubmit={(e) => this.props.addEvent(e, this.props.spotlight)}>
                     <label>Name</label><br />
                     <input name='name' type='text' placeholder='Enter event name here...' /><br /><br />
                     <label>Description</label><br />
                     <textarea name='desc' placeholder='(Optional) Enter event description here...' /><br /><br />
+                    <label>Calendar</label><br/>
                     <select name='calendar-select'>
                         {this.createOptions()}
-                    </select>
+                    </select><br/><br/>
                     <input type='submit' value='submit' />
                 </form>
             </Fragment>

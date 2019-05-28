@@ -53,22 +53,7 @@ export default class App extends React.Component {
         calender: 1,
         user: 1
       }],
-      calendars: [{
-        id: 1,
-        name: 'Personal Calendar'
-      }, {
-        id: 2,
-        name: 'General Workspace Calendar'
-      }, {
-        id: 3,
-        name: 'Project 1 Calendar'
-      }, {
-        id: 4,
-        name: 'Project 2 Calendar'
-      }, {
-        id: 5,
-        name: 'Pidgey Mating Season'
-      }],
+      calendars: [],
       sidebar: false,
       createCalendar: false,
       daydock: false,
@@ -92,6 +77,14 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.interval = setInterval(() => { this.setState({ today: Date(Date.now()) }) }, 1000)
+
+    fetch('http://localhost:3000/calenders')
+      .then(resp => resp.json())
+      .then(json => {
+        this.setState({
+          calendars: json
+        })
+      })
   }
 
   hamburgerBtn = () => {
@@ -101,25 +94,25 @@ export default class App extends React.Component {
     })
   }
 
-  addEvent = (event, date) => {
+  addEvent = (event) => {
     event.persist()
     event.preventDefault()
-    console.log(event.target.name.value)
-    console.log(event.target.desc.value)
-    console.log(date)
+    // console.log(event.target.name.value)
+    // console.log(event.target.desc.value)
+    // console.log(date)
+
     let nevents = [...this.state.events]
     fetch('http://localhost:3000/events', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
       },
       body: JSON.stringify({
         user: 1,
         calender: 1,
-        date: `${date}`
-        // desc: "#{event.target.desc.value}"
-        // name: "#{event.target.name.value}"
+        date: this.state.spotlight.getTime(),
+        description: event.target.desc.value,
+        name: event.target.name.value,
       })
     })
       .then(res => res.json())
@@ -129,7 +122,7 @@ export default class App extends React.Component {
           name: event.target.name.value,
           calender: 1,
           user: 1,
-          desc: event.target.desc.value
+          description: event.target.desc.value
         })
         this.setState({
           events: nevents
@@ -141,7 +134,7 @@ export default class App extends React.Component {
     if (this.state.daydock === false) {
       this.setState({
         daydock: true,
-        spotlight: dayID,
+        spotlight: new Date(dayID),
       })
     }
     else {
@@ -162,25 +155,12 @@ export default class App extends React.Component {
     }
   }
 
-  // openCreateCalendar = (event) => {
-  //   if (event.target.class === 'create-calendar'){
-  //     this.setState({
-  //       createCalendar: true
-  //     })
-  //   }
-  //   else{
-  //     this.setState({
-  //       createCalendar: false
-  //     })
-  //   }
-  // }
-
   openDayDock = () => {
     if (this.state.daydock === false) {
       return null
     }
     else {
-      return < DayDock spotlight={this.state.spotlight} addEvent={this.addEvent} />
+      return < DayDock spotlight={this.state.spotlight} addEvent={this.addEvent} calendars={this.state.calendars} events={this.state.events.filter(event => event.date === this.state.spotlight)} />
     }
   }
 
@@ -217,3 +197,17 @@ export default class App extends React.Component {
 }
 
 //use spotlight state to highlight day being viewed
+
+
+  // openCreateCalendar = (event) => {
+  //   if (event.target.class === 'create-calendar'){
+  //     this.setState({
+  //       createCalendar: true
+  //     })
+  //   }
+  //   else{
+  //     this.setState({
+  //       createCalendar: false
+  //     })
+  //   }
+  // }
