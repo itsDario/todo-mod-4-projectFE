@@ -75,7 +75,7 @@ export default class Calendar extends React.Component{
 
     render(){
         return <div className="calendar" onClick={this.handleClick}>
-            <h1>Today is... {this.props.today}</h1>
+            <h2>Today is... {this.props.today}</h2>
             < Year year={this.state.year}/>
             {this.createYearSelector()}
             < Month month={this.state.month}/>
