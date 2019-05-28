@@ -9,7 +9,7 @@ export default class DayDock extends React.Component {
     }
 
     createOptions = () => {
-        return this.props.calendars.map((calendar)=>{
+        return this.props.calendars.map((calendar) => {
             return <option key={calendar.id} value={calendar.id}>
                 {calendar.name}
             </option>
@@ -58,10 +58,10 @@ export default class DayDock extends React.Component {
                     <input name='name' type='text' placeholder='Enter event name here...' /><br /><br />
                     <label>Description</label><br />
                     <textarea name='desc' placeholder='(Optional) Enter event description here...' /><br /><br />
-                    <label>Calendar</label><br/>
+                    <label>Calendar</label><br />
                     <select name='calendar-select'>
                         {this.createOptions()}
-                    </select><br/><br/>
+                    </select><br /><br />
                     <input type='submit' value='submit' />
                 </form>
             </Fragment>
