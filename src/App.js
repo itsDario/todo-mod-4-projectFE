@@ -160,7 +160,7 @@ export default class App extends React.Component {
       return null
     }
     else {
-      return < DayDock spotlight={this.state.spotlight} addEvent={this.addEvent} calendars={this.state.calendars} events={this.state.events.filter(event => event.date === this.state.spotlight)} />
+      return < DayDock spotlight={this.state.spotlight} addEvent={this.addEvent} calendars={this.state.calendars} events={this.state.events.filter(event => parseInt(event.date) === this.state.spotlight.getTime())} />
     }
   }
 
