@@ -81,10 +81,10 @@ export default class App extends React.Component {
         events: resj
       }))
 
-    fetch('http://localhost:3000/events')
+    fetch('http://localhost:3000/calenders')
       .then(res => res.json())
       .then(resj => this.setState({
-        events: resj
+        calendars: resj
       }))
 
   }
