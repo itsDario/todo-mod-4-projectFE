@@ -88,25 +88,25 @@ export default class App extends React.Component {
     })
   }
 
-  addEvent = (event, date) => {
+  addEvent = (event) => {
     event.persist()
     event.preventDefault()
-    console.log(event.target.name.value)
-    console.log(event.target.desc.value)
-    console.log(date)
+    // console.log(event.target.name.value)
+    // console.log(event.target.desc.value)
+    // console.log(date)
+
     let nevents = [...this.state.events]
     fetch('http://localhost:3000/events', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
       },
       body: JSON.stringify({
         user: 1,
         calender: 1,
-        date: `${date}`
-        // desc: "#{event.target.desc.value}"
-        // name: "#{event.target.name.value}"
+        date: this.state.spotlight.getTime(),
+        description: event.target.desc.value,
+        name: event.target.name.value,
       })
     })
       .then(res => res.json())
@@ -116,7 +116,7 @@ export default class App extends React.Component {
           name: event.target.name.value,
           calender: 1,
           user: 1,
-          desc: event.target.desc.value
+          description: event.target.desc.value
         })
         this.setState({
           events: nevents
@@ -128,7 +128,7 @@ export default class App extends React.Component {
     if (this.state.daydock === false) {
       this.setState({
         daydock: true,
-        spotlight: dayID,
+        spotlight: new Date(dayID),
       })
     }
     else {
