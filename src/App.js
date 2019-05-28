@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './containers/navbar'
 import Sidebar from './containers/sidebar'
 import Calendar from './components/calendar'
+import DayDock from './components/daydock'
 
 export default class App extends React.Component {
 
@@ -15,6 +16,8 @@ export default class App extends React.Component {
       events: [{id: 1, name: 'Terrorize New Pokemon Trainers'}, {id: 2, name: 'Event 2'}, {id: 3, name: 'Event 3'}, {id: 4, name: 'Event 4'}, {id: 5, name: 'Event 5'}], //Objects? IDs?
     },
     sidebar: false,
+    daydock: false,
+    spotlight: '',
   }
 
   componentDidMount(){
@@ -28,6 +31,21 @@ export default class App extends React.Component {
     })
   }
 
+  toggleDayDock = (dayID) => {
+    if (this.state.daydock === false){
+      this.setState({
+        daydock: true,
+        spotlight: dayID,
+      })
+    }
+    else{
+      this.setState({
+        daydock: false,
+        spotlight: '',
+      })
+    }
+  }
+
   openSidebar = () => {
     if (this.state.sidebar === false){
       return null
@@ -37,14 +55,25 @@ export default class App extends React.Component {
     }
   }
 
+  openDayDock = () => {
+    if (this.state.daydock === false){
+      return null
+    }
+    else{
+      return < DayDock spotlight={this.state.spotlight} /> 
+    }
+  }
+
   render(){
     return (
       <div className="App">
       < Navbar hamburgerBtn={this.hamburgerBtn} menuBtnState={this.state.menuBtn} username={this.state.user.name} />
       {this.openSidebar()}
-      < Calendar today={this.state.today} /> 
+      {this.openDayDock()}
+      < Calendar today={this.state.today} toggleDayDock={this.toggleDayDock}/> 
       </div>
     );
   }
 }
 
+//use spotlight state to highlight day being viewed

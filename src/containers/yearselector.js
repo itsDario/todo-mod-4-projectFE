@@ -1,6 +1,6 @@
 import React from 'react'
 
-const yearSelector = () => {
+const YearSelector = () => {
 
 
 
@@ -9,4 +9,4 @@ const yearSelector = () => {
     </div>
 }
 
-export default yearSelector;
+export default YearSelector;

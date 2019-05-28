@@ -1,6 +1,6 @@
 import React from 'react'
 
-const monthSelector = () => {
+const MonthSelector = () => {
 
 
 
@@ -9,4 +9,4 @@ const monthSelector = () => {
     </div>
 }
 
-export default monthSelector;
+export default MonthSelector;
