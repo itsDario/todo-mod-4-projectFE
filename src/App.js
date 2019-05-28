@@ -90,7 +90,7 @@ export default class App extends React.Component {
   }
 
   addEvent = (event, date) => {
-
+    event.persist()
     event.preventDefault()
     console.log(event.target.name.value)
     console.log(event.target.desc.value)
