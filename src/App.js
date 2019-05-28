@@ -75,6 +75,18 @@ export default class App extends React.Component {
       spotlight: '',
     }
 
+    fetch('http://localhost:3000/events')
+      .then(res => res.json())
+      .then(resj => this.setState({
+        events: resj
+      }))
+
+    fetch('http://localhost:3000/events')
+      .then(res => res.json())
+      .then(resj => this.setState({
+        events: resj
+      }))
+
   }
 
 
@@ -174,17 +186,21 @@ export default class App extends React.Component {
 
   addCalendar = (event) => {
     event.preventDefault()
-    // fetch(`http://localhost:3000/calendars`, {
-    //   method: 'POST',
-    //   headers: {
 
-    //   },
-    //   body: JSON.stringify({
-    //     name: event.target.name.value
-    //   })
-    // })
+    fetch(`http://localhost:3000/calenders`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        name: event.target.name.value
+      })
+    })
+      .then(res => res.json())
+      .then(console.log)
     this.setState({
-      calendars: [...this.state.calendars, { id: this.state.calendars.length + 1, name: event.target.calendarName.value }]
+      calendars: [...this.state.calendars, { id: this.state.calendars.length + 1, name: event.target.name.value }]
     })
   }
 

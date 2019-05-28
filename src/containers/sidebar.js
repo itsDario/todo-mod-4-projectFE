@@ -32,7 +32,7 @@ const Sidebar = (props) => {
                 <h2>Create New Calendar</h2>
                 <form className='create-calendar' onSubmit={handleSubmit}>
                     <label>Name</label><br /><br />
-                    <input type='text' name='calendarName' /><br /><br />
+                    <input type='text' name='name' /><br /><br />
                     <input type='submit' value='submit' />
                 </form>
             </Fragment>
