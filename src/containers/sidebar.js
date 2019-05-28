@@ -3,13 +3,13 @@ import React from 'react'
 const Sidebar = (props) => {
 
     const createEvents = () => {
-        return props.user.events.map(event=>{
+        return props.events.map(event => {
             return <li key={event.id}>{event.name}</li>
         })
     }
 
     const createCalendars = () => {
-        return props.user.calendars.map(calendar=>{
+        return props.user.calendars.map(calendar => {
             return <li key={calendar.id}>{calendar.name}</li>
         })
     }

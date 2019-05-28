@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-export default class DayDock extends React.Component{
+export default class DayDock extends React.Component {
 
     state = {
         form: false,
@@ -12,9 +12,9 @@ export default class DayDock extends React.Component{
             form: !this.state.form
         })
     }
-    
+
     showDock = () => {
-        if (!this.state.form){
+        if (!this.state.form) {
             return <Fragment>
                 <h2>DayDock for {this.state.date.toDateString()}</h2>
                 <h2> Events </h2>
@@ -27,21 +27,21 @@ export default class DayDock extends React.Component{
                 <button className='create-event' onClick={this.handleClick}>Create Event</button>
             </Fragment>
         }
-        else if (this.state.form){
+        else if (this.state.form) {
             return <Fragment>
-                <h2>Create New Event</h2> 
-                <form className='events-form'>
-                    <label>Name</label><br/>
-                    <input type='text' placeholder='Enter event name here...' /><br/><br/>
-                    <label>Description</label><br/>
-                    <textarea placeholder='(Optional) Enter event description here...'/><br/><br/>
-                    <input type='submit' value='submit'/>
+                <h2>Create New Event</h2>
+                <form className='events-form' onSubmit={(e) => this.props.addEvent(e, this.state.date)}>
+                    <label>Name</label><br />
+                    <input name='name' type='text' placeholder='Enter event name here...' /><br /><br />
+                    <label>Description</label><br />
+                    <textarea name='desc' placeholder='(Optional) Enter event description here...' /><br /><br />
+                    <input type='submit' value='submit' />
                 </form>
             </Fragment>
         }
     }
 
-    render(){
+    render() {
         return <div className='daydock'>
             {this.showDock()}
         </div>

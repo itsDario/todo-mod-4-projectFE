@@ -12,18 +12,53 @@ export default class App extends React.Component {
     menuBtn: false,
     user: {
       name: 'Pidgey',
-      calendars: [{id: 1, name: 'Personal Calendar'}, {id: 2, name: 'General Workspace Calendar'}, {id: 3, name: 'Project 1 Calendar'}, {id: 4, name: 'Project 2 Calendar'}, {id: 5, name: 'Pidgey Mating Season'}], //Objects? IDs?
-      events: [{id: 1, name: 'Terrorize New Pokemon Trainers'}, {id: 2, name: 'Event 2'}, {id: 3, name: 'Event 3'}, {id: 4, name: 'Event 4'}, {id: 5, name: 'Event 5'}], //Objects? IDs?
+      calendars: [{ id: 1, name: 'Personal Calendar' }, { id: 2, name: 'General Workspace Calendar' }, { id: 3, name: 'Project 1 Calendar' }, { id: 4, name: 'Project 2 Calendar' }, { id: 5, name: 'Pidgey Mating Season' }], //Objects? IDs?
     },
+    events: [{
+      id: 1,
+      name: 'Terrorize New Pokemon Trainers',
+      date: 5000000,
+      desc: 'win every match',
+      calender: 1,
+      user: 1
+    }, {
+      id: 2,
+      name: 'Event 2',
+      date: 50000000,
+      desc: 'win every match',
+      calender: 1,
+      user: 1
+    }, {
+      id: 3,
+      name: 'Event 3',
+      date: 500000000,
+      desc: 'win every match',
+      calender: 1,
+      user: 1
+    }, {
+      id: 4,
+      name: 'Event 4',
+      date: 500000000,
+      desc: 'win every match',
+      calender: 1,
+      user: 1
+    }, {
+      id: 5,
+      name: 'Event 5',
+      date: 5000000000,
+      desc: 'win every match',
+      calender: 1,
+      user: 1
+    }],
     sidebar: false,
     daydock: false,
     spotlight: '',
   }
 
-  componentDidMount(){
-    this.interval = setInterval(()=>{this.setState({today: Date(Date.now())})}, 1000)
+  componentDidMount() {
+    this.interval = setInterval(() => { this.setState({ today: Date(Date.now()) }) }, 1000)
   }
-  
+
   hamburgerBtn = () => {
     this.setState({
       menuBtn: !this.state.menuBtn,
@@ -31,14 +66,50 @@ export default class App extends React.Component {
     })
   }
 
+  addEvent = (event, date) => {
+
+    event.preventDefault()
+    console.log(event.target.name.value)
+    console.log(event.target.desc.value)
+    console.log(date)
+    let nevents = [...this.state.events]
+    fetch('http://localhost:3000/events', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        user: 1,
+        calender: 1,
+        date: `${date}`
+        // desc: "#{event.target.desc.value}"
+        // name: "#{event.target.name.value}"
+      })
+    })
+      .then(res => res.json())
+      .then(res => {
+        nevents.push({
+          id: res['id'],
+          name: event.target.name.value,
+          calender: 1,
+          user: 1,
+          desc: event.target.desc.value
+        })
+        this.setState({
+          events: nevents
+        })
+      })
+  }
+
   toggleDayDock = (dayID) => {
-    if (this.state.daydock === false){
+    if (this.state.daydock === false) {
       this.setState({
         daydock: true,
         spotlight: dayID,
       })
     }
-    else{
+    else {
       this.setState({
         daydock: false,
         spotlight: '',
@@ -47,30 +118,31 @@ export default class App extends React.Component {
   }
 
   openSidebar = () => {
-    if (this.state.sidebar === false){
+    if (this.state.sidebar === false) {
       return null
     }
     else {
-      return < Sidebar user={{...this.state.user}} /> 
+
+      return < Sidebar user={{ ...this.state.user }} events={this.state.events} />
     }
   }
 
   openDayDock = () => {
-    if (this.state.daydock === false){
+    if (this.state.daydock === false) {
       return null
     }
-    else{
-      return < DayDock spotlight={this.state.spotlight} /> 
+    else {
+      return < DayDock spotlight={this.state.spotlight} addEvent={this.addEvent} />
     }
   }
 
-  render(){
+  render() {
     return (
       <div className="App">
-      < Navbar hamburgerBtn={this.hamburgerBtn} menuBtnState={this.state.menuBtn} username={this.state.user.name} />
-      {this.openSidebar()}
-      {this.openDayDock()}
-      < Calendar today={this.state.today} toggleDayDock={this.toggleDayDock}/> 
+        < Navbar hamburgerBtn={this.hamburgerBtn} menuBtnState={this.state.menuBtn} username={this.state.user.name} />
+        {this.openSidebar()}
+        {this.openDayDock()}
+        < Calendar today={this.state.today} toggleDayDock={this.toggleDayDock} />
       </div>
     );
   }
