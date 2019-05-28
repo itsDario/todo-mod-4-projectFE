@@ -4,7 +4,7 @@ const Month = (props) => {
 
 
     return <div className='month'>
-        <span className='monthbut'>&#171; {props.month} &#187;</span>
+        <span className='monthbtn'>&#171; {props.month} &#187;</span>
     </div>
 
 }

@@ -12,7 +12,6 @@ export default class App extends React.Component {
     menuBtn: false,
     user: {
       name: 'Pidgey',
-      calendars: [{ id: 1, name: 'Personal Calendar' }, { id: 2, name: 'General Workspace Calendar' }, { id: 3, name: 'Project 1 Calendar' }, { id: 4, name: 'Project 2 Calendar' }, { id: 5, name: 'Pidgey Mating Season' }], //Objects? IDs?
     },
     events: [{
       id: 1,
@@ -50,7 +49,24 @@ export default class App extends React.Component {
       calender: 1,
       user: 1
     }],
+    calendars: [{
+      id: 1,
+      name: 'Personal Calendar'
+    }, {
+      id: 2,
+      name: 'General Workspace Calendar'
+    }, {
+      id: 3,
+      name: 'Project 1 Calendar'
+    }, {
+      id: 4,
+      name: 'Project 2 Calendar'
+    }, {
+      id: 5,
+      name: 'Pidgey Mating Season'
+    }],
     sidebar: false,
+    createCalendar: false,
     daydock: false,
     spotlight: '',
   }
@@ -123,9 +139,22 @@ export default class App extends React.Component {
     }
     else {
 
-      return < Sidebar user={{ ...this.state.user }} events={this.state.events} />
+      return < Sidebar user={{ ...this.state.user }} events={this.state.events} calendars={this.state.calendars} addCalendar={this.addCalendar} />
     }
   }
+
+  // openCreateCalendar = (event) => {
+  //   if (event.target.class === 'create-calendar'){
+  //     this.setState({
+  //       createCalendar: true
+  //     })
+  //   }
+  //   else{
+  //     this.setState({
+  //       createCalendar: false
+  //     })
+  //   }
+  // }
 
   openDayDock = () => {
     if (this.state.daydock === false) {
@@ -136,16 +165,31 @@ export default class App extends React.Component {
     }
   }
 
-  render() {
-    return (
-      <div className="App">
-        < Navbar hamburgerBtn={this.hamburgerBtn} menuBtnState={this.state.menuBtn} username={this.state.user.name} />
-        {this.openSidebar()}
-        {this.openDayDock()}
-        < Calendar today={this.state.today} toggleDayDock={this.toggleDayDock} />
-      </div>
-    );
+  addCalendar = (event) => {
+    event.preventDefault()
+    // fetch(`http://localhost:3000/calendars`, {
+    //   method: 'POST',
+    //   headers: {
+
+    //   },
+    //   body: JSON.stringify({
+    //     name: event.target.name.value
+    //   })
+    // })
+    this.setState({
+      calendars: [...this.state.calendars, { id: this.state.calendars.length + 1, name: event.target.calendarName.value }]
+    })
+
+    render(){
+      return (
+        <div className="App">
+          < Navbar hamburgerBtn={this.hamburgerBtn} menuBtnState={this.state.menuBtn} username={this.state.user.name} />
+          {this.openSidebar()}
+          {this.openDayDock()}
+          < Calendar today={this.state.today} toggleDayDock={this.toggleDayDock} />
+        </div>
+      );
+    }
   }
-}
 
 //use spotlight state to highlight day being viewed

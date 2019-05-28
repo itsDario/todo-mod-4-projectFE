@@ -58,17 +58,18 @@ export default class Calendar extends React.Component{
             this.setState({
                 yearSelect: false,
                 monthSelect: false,
+                daySelect: false,
             })
         }
 
-        if (event.target.className === 'yearbut'){
-            this.setState({yearSelect: !this.state.yearSelect})
+        if (event.target.className === 'yearbtn'){
+            this.setState({yearSelect: true})
         }
-        else if (event.target.className === 'monthbut'){
-            this.setState({monthSelect: !this.state.monthSelect})
+        else if (event.target.className === 'monthbtn'){
+            this.setState({monthSelect: true})
         }
         else if (event.target.className === 'day'){
-            this.setState({daySelect: !this.state.daySelect,}, this.props.toggleDayDock(event.target.id))
+            this.setState({daySelect: true,}, this.props.toggleDayDock(event.target.id))
         }
     }
 
