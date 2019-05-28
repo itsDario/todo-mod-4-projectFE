@@ -26,28 +26,28 @@ export default class App extends React.Component {
         user: 1
       }, {
         id: 2,
-        name: 'Event 2',
+        name: 'Start Your Server!',
         date: 50000000,
         desc: 'win every match',
         calender: 1,
         user: 1
       }, {
         id: 3,
-        name: 'Event 3',
+        name: 'No Server',
         date: 500000000,
         desc: 'win every match',
         calender: 1,
         user: 1
       }, {
         id: 4,
-        name: 'Event 4',
+        name: 'Please',
         date: 500000000,
         desc: 'win every match',
         calender: 1,
         user: 1
       }, {
         id: 5,
-        name: 'Event 5',
+        name: 'Help',
         date: 5000000000,
         desc: 'win every match',
         calender: 1,
