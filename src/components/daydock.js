@@ -5,18 +5,33 @@ export default class DayDock extends React.Component{
     state = {
         form: false,
         date: new Date(this.props.spotlight),
+        events: [],
     }
+
+    // componentDidMount(){
+    //     fetch(`http://localhost:3000/events/${this.props.spotlight}`)
+    //     .then(resp=>resp.json())
+    //     .then(json=>{
+    //         this.setState({
+    //             events: json
+    //         })
+    //     })
+    // }
 
     handleClick = () => {
         this.setState({
             form: !this.state.form
         })
     }
+
+    handleSubmit = () => {
+
+    }
     
     showDock = () => {
         if (!this.state.form){
             return <Fragment>
-                <h2>DayDock for {this.state.date.toDateString()}</h2>
+                <h2>{this.state.date.toDateString()}</h2>
                 <h2> Events </h2>
                 <ul className='events-list'>
                     <li>Event 1</li>
@@ -30,7 +45,7 @@ export default class DayDock extends React.Component{
         else if (this.state.form){
             return <Fragment>
                 <h2>Create New Event</h2> 
-                <form className='events-form'>
+                <form className='events-form' onSubmit={this.handleSubmit}>
                     <label>Name</label><br/>
                     <input type='text' placeholder='Enter event name here...' /><br/><br/>
                     <label>Description</label><br/>

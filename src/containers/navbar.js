@@ -27,7 +27,7 @@ const Navbar = (props) => {
     const userDash = () => {
 
         return <span className='UserDash'>
-            <button className='messages' onClick={()=>{alert('Goes to Messages')}}>Messages</button>
+            <button className='messages' onClick={()=>{alert('Goes To Messages')}}>Messages</button>
             <button onClick={()=>{alert('Opens User Drawdown')}}>Welcome {props.username}!</button>
         </span>
     }

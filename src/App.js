@@ -12,10 +12,11 @@ export default class App extends React.Component {
     menuBtn: false,
     user: {
       name: 'Pidgey',
-      calendars: [{id: 1, name: 'Personal Calendar'}, {id: 2, name: 'General Workspace Calendar'}, {id: 3, name: 'Project 1 Calendar'}, {id: 4, name: 'Project 2 Calendar'}, {id: 5, name: 'Pidgey Mating Season'}], //Objects? IDs?
       events: [{id: 1, name: 'Terrorize New Pokemon Trainers'}, {id: 2, name: 'Event 2'}, {id: 3, name: 'Event 3'}, {id: 4, name: 'Event 4'}, {id: 5, name: 'Event 5'}], //Objects? IDs?
     },
+    calendars: [{id: 1, name: 'Personal Calendar'}, {id: 2, name: 'General Workspace Calendar'}, {id: 3, name: 'Project 1 Calendar'}, {id: 4, name: 'Project 2 Calendar'}, {id: 5, name: 'Pidgey Mating Season'}], //Objects? IDs?
     sidebar: false,
+    createCalendar: false,
     daydock: false,
     spotlight: '',
   }
@@ -51,9 +52,22 @@ export default class App extends React.Component {
       return null
     }
     else {
-      return < Sidebar user={{...this.state.user}} /> 
+      return < Sidebar user={{...this.state.user}} calendars={this.state.calendars} addCalendar={this.addCalendar}/> 
     }
   }
+
+  // openCreateCalendar = (event) => {
+  //   if (event.target.class === 'create-calendar'){
+  //     this.setState({
+  //       createCalendar: true
+  //     })
+  //   }
+  //   else{
+  //     this.setState({
+  //       createCalendar: false
+  //     })
+  //   }
+  // }
 
   openDayDock = () => {
     if (this.state.daydock === false){
@@ -62,6 +76,24 @@ export default class App extends React.Component {
     else{
       return < DayDock spotlight={this.state.spotlight} /> 
     }
+  }
+
+  addCalendar = (event) => {
+    event.preventDefault()
+    // fetch(`http://localhost:3000/calendars`, {
+    //   method: 'POST',
+    //   headers: {
+
+    //   },
+    //   body: JSON.stringify({
+    //     name: event.target.name.value
+    //   })
+    // })
+    this.setState({
+      calendars: [...this.state.calendars, {id: this.state.calendars.length+1, name: event.target.calendarName.value}]
+    })
+
+    return null
   }
 
   render(){

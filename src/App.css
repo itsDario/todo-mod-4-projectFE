@@ -148,9 +148,22 @@ button.create-event {
   background-color: maroon;
 }
 
+button.open-calendar-form {
+  position: absolute;
+  bottom: 0;
+  width: 20vw;
+  margin-left: -10vw;
+  border-style: none;
+  background-color: maroon;
+}
+
 form.events-form textarea {
   width: 250px;
   height: 400px;
+}
+
+form.create-calendar input {
+  width: 250px;
 }
 
 form.events-form input {
