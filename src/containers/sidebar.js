@@ -39,19 +39,6 @@ const Sidebar = (props) => {
         }
     }
 
-    // const submitCalendar = () => {
-    //     // fetch('http://localhost:3000/calendars', {
-    //     //     method: "POST",
-    //     //     headers: {
-
-    //     //     },
-    //     //     body: JSON.stringify({
-
-    //     //     })
-    //     // })
-
-    // }
-
     const createEvents = () => {
         return props.events.map(event => {
             return <li key={event.id}>{event.name}</li>
@@ -70,3 +57,16 @@ const Sidebar = (props) => {
 }
 
 export default Sidebar;
+
+    // const submitCalendar = () => {
+    //     // fetch('http://localhost:3000/calendars', {
+    //     //     method: "POST",
+    //     //     headers: {
+
+    //     //     },
+    //     //     body: JSON.stringify({
+
+    //     //     })
+    //     // })
+
+    // }

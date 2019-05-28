@@ -53,22 +53,7 @@ export default class App extends React.Component {
         calender: 1,
         user: 1
       }],
-      calendars: [{
-        id: 1,
-        name: 'Personal Calendar'
-      }, {
-        id: 2,
-        name: 'General Workspace Calendar'
-      }, {
-        id: 3,
-        name: 'Project 1 Calendar'
-      }, {
-        id: 4,
-        name: 'Project 2 Calendar'
-      }, {
-        id: 5,
-        name: 'Pidgey Mating Season'
-      }],
+      calendars: [],
       sidebar: false,
       createCalendar: false,
       daydock: false,
@@ -81,17 +66,19 @@ export default class App extends React.Component {
         events: resj
       }))
 
-    fetch('http://localhost:3000/events')
-      .then(res => res.json())
-      .then(resj => this.setState({
-        events: resj
-      }))
-
   }
 
 
   componentDidMount() {
     this.interval = setInterval(() => { this.setState({ today: Date(Date.now()) }) }, 1000)
+
+    fetch('http://localhost:3000/calenders')
+    .then(resp=>resp.json())
+    .then(json=>{
+        this.setState({
+            calendars: json
+        })
+    })
   }
 
   hamburgerBtn = () => {
@@ -162,25 +149,12 @@ export default class App extends React.Component {
     }
   }
 
-  // openCreateCalendar = (event) => {
-  //   if (event.target.class === 'create-calendar'){
-  //     this.setState({
-  //       createCalendar: true
-  //     })
-  //   }
-  //   else{
-  //     this.setState({
-  //       createCalendar: false
-  //     })
-  //   }
-  // }
-
   openDayDock = () => {
     if (this.state.daydock === false) {
       return null
     }
     else {
-      return < DayDock spotlight={this.state.spotlight} addEvent={this.addEvent} />
+      return < DayDock spotlight={this.state.spotlight} addEvent={this.addEvent} calendars={this.state.calendars} events={this.state.events.filter(event=>event.date === this.state.spotlight)}/>
     }
   }
 
@@ -217,3 +191,17 @@ export default class App extends React.Component {
 }
 
 //use spotlight state to highlight day being viewed
+
+
+  // openCreateCalendar = (event) => {
+  //   if (event.target.class === 'create-calendar'){
+  //     this.setState({
+  //       createCalendar: true
+  //     })
+  //   }
+  //   else{
+  //     this.setState({
+  //       createCalendar: false
+  //     })
+  //   }
+  // }
