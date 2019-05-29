@@ -62,11 +62,7 @@ export default class App extends React.Component {
   addEvent = (event) => {
     event.persist()
     event.preventDefault()
-    // console.log(event.target.name.value)
-    // console.log(event.target.desc.value)
-    // console.log(date)
 
-    let nevents = [...this.state.events]
     fetch('http://localhost:3000/events', {
       method: 'POST',
       headers: {
@@ -82,15 +78,8 @@ export default class App extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        nevents.push({
-          id: res['id'],
-          name: event.target.name.value,
-          calender: 1,
-          user: 1,
-          description: event.target.desc.value
-        })
         this.setState({
-          events: nevents
+          events: [...this.state.events, res]
         })
       })
   }
@@ -160,6 +149,8 @@ export default class App extends React.Component {
     );
   }
 }
+
+
 
 //use spotlight state to highlight day being viewed
 

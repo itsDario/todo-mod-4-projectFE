@@ -32,7 +32,6 @@ export default class Calendar extends React.Component {
 
     createDays = () => {
         return this.createMay().map((day) => {
-            // return < Day key={day.id.getTime()} day={{...day}} />
             return < Day key={day.id.getTime()} day={{ ...day }} />
         })
     }
