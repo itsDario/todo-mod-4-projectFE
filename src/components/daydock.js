@@ -17,14 +17,15 @@ export default class DayDock extends React.Component {
     }
 
     createEvents = () => {
-        console.log(this.props);
-
-        return this.props.events.map(
-            event => <li key={event.id}>Name: {event.name}</li>
-        )
+        return this.props.events.map((event)=>{
+            return <li key={event.id}>Name: {event.name}</li>
+        })
     }
 
     submitEvent = (event) => {
+        event.preventDefault()
+        event.persist()
+
         this.props.addEvent(event)
         this.setState({
             form: false,
@@ -52,7 +53,7 @@ export default class DayDock extends React.Component {
         else if (this.state.form) {
             return <Fragment>
                 <h2>Create New Event</h2>
-                <form className='events-form' onSubmit={(e) => this.props.addEvent(e, this.props.spotlight)}>
+                <form className='events-form' onSubmit={this.submitEvent}>
                     <label>Name</label><br />
                     <input name='name' type='text' placeholder='Enter event name here...' /><br /><br />
                     <label>Description</label><br />
