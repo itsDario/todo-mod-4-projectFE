@@ -30,9 +30,14 @@ export default class Calendar extends React.Component {
     //////////////////////////
 
 
-    createDays = () => {
+    createDays = (spotlight) => {
         return this.createMay().map((day) => {
-            return < Day key={day.id.getTime()} day={{ ...day }} />
+            if (spotlight === day.id.getTime()){
+                return < Day key={day.id.getTime()} day={{...day}} focus={true} />
+            }
+            else{
+                return < Day key={day.id.getTime()} day={{ ...day }} focus={false} />
+            }
         })
     }
 
@@ -90,7 +95,7 @@ export default class Calendar extends React.Component {
                 </span>
                 <span className='day null' id=''>
                 </span>
-                {this.createDays()}
+                {this.createDays(this.props.spotlight)}
             </div>
         </div>
     }
