@@ -15,6 +15,7 @@ export default class Calendar extends React.Component {
         // day: this.props.today.split(' ')[2],
         yearSelect: false,
         monthSelect: false,
+        daySelect: false,
     }
 
 
@@ -30,12 +31,19 @@ export default class Calendar extends React.Component {
     //////////////////////////
 
 
-    createDays = () => {
-        // events={this.state.events.filter(event => parseInt(event.date) === this.state.spotlight.getTime())}
+    // events={this.state.events.filter(event => parseInt(event.date) === this.state.spotlight.getTime())}
 
+
+
+    createDays = (spotlight) => {
         return this.createMay().map((day) => {
             if (!!day) {
-                return < Day key={day.id.getTime()} day={{ ...day }} events={this.props.events.filter(event => parseInt(event.date) === day.id.getTime())} />
+                if (spotlight === day.id.getTime()) {
+                    return < Day key={day.id.getTime()} day={{ ...day }} focus={true} events={this.props.events.filter(event => parseInt(event.date) === day.id.getTime())} />
+                }
+                else {
+                    return < Day key={day.id.getTime()} day={{ ...day }} focus={false} events={this.props.events.filter(event => parseInt(event.date) === day.id.getTime())} />
+                }
             }
         })
     }
@@ -59,22 +67,22 @@ export default class Calendar extends React.Component {
     }
 
     handleClick = (event) => {
-        if (this.state.yearSelect !== false || this.state.monthSelect !== false || this.state.daySelect !== false) {
-            this.setState({
-                yearSelect: false,
-                monthSelect: false,
-                daySelect: false,
-            })
-        }
+        // if (this.state.yearSelect !== false || this.state.monthSelect !== false || this.state.daySelect !== false) {
+        this.setState({
+            yearSelect: false,
+            monthSelect: false,
+            daySelect: false,
+        })
+        // }
 
         if (event.target.className === 'yearbtn') {
-            this.setState({ yearSelect: true })
+            this.setState({ yearSelect: true }, this.props.toggleDayDock)
         }
         else if (event.target.className === 'monthbtn') {
-            this.setState({ monthSelect: true })
+            this.setState({ monthSelect: true }, this.props.toggleDayDock)
         }
-        else if (event.target.className === 'day' && event.target.className !== 'null') {
-            this.setState({ daySelect: true, }, this.props.toggleDayDock(event.target.id))
+        else if ((event.target.className === 'day' || event.target.className === 'focus') && event.target.className !== 'null') {
+            this.setState({ daySelect: true }, this.props.toggleDayDock(event.target.id))
         }
     }
 
@@ -94,7 +102,7 @@ export default class Calendar extends React.Component {
                 </span>
                 <span className='day null' id=''>
                 </span>
-                {this.createDays()}
+                {this.createDays(this.props.spotlight)}
             </div>
         </div>
     }

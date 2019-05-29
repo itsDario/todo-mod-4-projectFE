@@ -85,7 +85,7 @@ export default class App extends React.Component {
   }
 
   toggleDayDock = (dayID) => {
-    if (this.state.daydock === false) {
+    if (this.state.daydock === false && typeof dayID === 'string') {
       this.setState({
         daydock: true,
         spotlight: new Date(dayID),
@@ -144,13 +144,13 @@ export default class App extends React.Component {
         < Navbar hamburgerBtn={this.hamburgerBtn} menuBtnState={this.state.menuBtn} username={this.state.user.name} />
         {this.openSidebar()}
         {this.openDayDock()}
-        < Calendar events={this.state.events} today={this.state.today} toggleDayDock={this.toggleDayDock} />
+        < Calendar events={this.state.events} today={this.state.today} toggleDayDock={this.toggleDayDock} spotlight={this.state.spotlight === '' ? 0 : this.state.spotlight.getTime()} />
       </div>
     );
   }
 }
 
-
+//this.state.spotlight format is '...Wed May 01 2019 00:00:00 GMT-0400...'
 
 //use spotlight state to highlight day being viewed
 
