@@ -101,7 +101,7 @@ export default class App extends React.Component {
     // console.log(event.target.desc.value)
     // console.log(date)
 
-    let nevents = [...this.state.events]
+    let nevents = [...this.state.events, ]
     fetch('http://localhost:3000/events', {
       method: 'POST',
       headers: {
@@ -131,11 +131,12 @@ export default class App extends React.Component {
   }
 
   toggleDayDock = (dayID) => {
+    console.log(new Date(dayID).getTime())
     if (this.state.daydock === false) {
       this.setState({
         daydock: true,
         spotlight: new Date(dayID),
-      })
+      }, ()=>console.log(this.state.spotlight.getTime()))
     }
     else {
       this.setState({
@@ -190,7 +191,7 @@ export default class App extends React.Component {
         < Navbar hamburgerBtn={this.hamburgerBtn} menuBtnState={this.state.menuBtn} username={this.state.user.name} />
         {this.openSidebar()}
         {this.openDayDock()}
-        < Calendar today={this.state.today} toggleDayDock={this.toggleDayDock} />
+        < Calendar today={this.state.today} toggleDayDock={this.toggleDayDock} spotlight={this.state.spotlight}/>
       </div>
     );
   }

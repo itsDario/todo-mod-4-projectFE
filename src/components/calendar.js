@@ -31,8 +31,13 @@ export default class Calendar extends React.Component {
 
     createDays = () => {
         return this.createMay().map((day) => {
-            // return < Day key={day.id.getTime()} day={{...day}} />
-            return < Day key={day.id.getTime()} day={{ ...day }} />
+            //     if (this.props.spotlight === day.id.getTime()){
+            //         return < Day key={day.id.getTime()} day={{ ...day }} focus={true}/>
+            //     }
+            // else{
+                
+                return < Day key={day.id.getTime()} day={{ ...day }} focus={false}/>
+            // }
         })
     }
 
@@ -69,7 +74,7 @@ export default class Calendar extends React.Component {
         else if (event.target.className === 'monthbtn') {
             this.setState({ monthSelect: true })
         }
-        else if (event.target.className === 'day' && event.target.className !== 'null') {
+        else if (event.target.className === 'day') {
             this.setState({ daySelect: true, }, this.props.toggleDayDock(event.target.id))
         }
     }
@@ -95,13 +100,3 @@ export default class Calendar extends React.Component {
     }
 
 }
-
-// Calendar.defaultProps = {
-//     date: Date(Date.now())
-// }
-
-// export default Calendar
-
-
-// months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-// days = ['31', '28', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31']
