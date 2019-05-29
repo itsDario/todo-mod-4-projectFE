@@ -85,7 +85,7 @@ export default class App extends React.Component {
   }
 
   toggleDayDock = (dayID) => {
-    if (this.state.daydock === false) {
+    if (this.state.daydock === false && typeof dayID === 'string') {
       this.setState({
         daydock: true,
         spotlight: new Date(dayID),
