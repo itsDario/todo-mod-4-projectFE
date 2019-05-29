@@ -66,6 +66,10 @@ div.monthselector {
   color: white;
 }
 
+.monthButton{
+  width: 30%;
+}
+
 div.weekdays{
   width: 100%;
   display: flex;
