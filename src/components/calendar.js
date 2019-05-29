@@ -47,7 +47,8 @@ export default class Calendar extends React.Component {
     }
 
     createDays = (spotlight) => {
-        return this.createMay().map((day) => {
+
+        let days = this.createMay().map((day) => {
             if (!!day) {
                 if (spotlight === day.id.getTime()) {
                     return < Day key={day.id.getTime()} day={{ ...day }} focus={true} events={this.props.events.filter(event => parseInt(event.date) === day.id.getTime())} />
@@ -55,8 +56,20 @@ export default class Calendar extends React.Component {
                 else {
                     return < Day key={day.id.getTime()} day={{ ...day }} focus={false} events={this.props.events.filter(event => parseInt(event.date) === day.id.getTime())} />
                 }
-            }
+            }    
         })
+        // debugger;
+        let empty1 = days[0].props.day.id.getDay()
+        let empty2 = days[days.length-1].props.day.id.getDay()
+
+        for(let n = 0; n < empty1; n++){
+            days.unshift(<span className='day null' id='' />);
+        }
+        for(let n = 0; n < 6-empty2; n++){
+            days.push(<span className='day null' id='' />)
+        }
+        return days
+
     }
 
     createYearSelector = () => {
@@ -107,12 +120,12 @@ export default class Calendar extends React.Component {
             <Daynames />
 
             <div className='days-container'>
-                <span className='day null' id=''>
+                {/* <span className='day null' id=''>
                 </span>
                 <span className='day null' id=''>
                 </span>
                 <span className='day null' id=''>
-                </span>
+                </span> */}
                 {this.createDays(this.props.spotlight)}
             </div>
         </div>

@@ -145,11 +145,13 @@ export default class App extends React.Component {
         < Navbar hamburgerBtn={this.hamburgerBtn} menuBtnState={this.state.menuBtn} username={this.state.user.name} />
         {this.openSidebar()}
         {this.openDayDock()}
-        < Calendar shownMonth={this.state.shownMonth} events={this.state.events} today={this.state.today} toggleDayDock={this.toggleDayDock} spotlight={this.state.spotlight === '' ? 0 : this.state.spotlight.getTime()} />
+        < Calendar events={this.state.events} today={this.state.today} toggleDayDock={this.toggleDayDock} spotlight={this.state.spotlight === '' ? 0 : this.state.spotlight.getTime()} />
       </div>
     );
   }
 }
+
+
 
 //this.state.spotlight format is '...Wed May 01 2019 00:00:00 GMT-0400...'
 
