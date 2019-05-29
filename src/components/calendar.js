@@ -4,6 +4,7 @@ import Month from '../containers/month';
 import Day from './day';
 import YearSelector from '../containers/yearselector';
 import MonthSelector from '../containers/monthselector';
+import Daynames from '../containers/daynames'
 
 
 export default class Calendar extends React.Component {
@@ -81,6 +82,7 @@ export default class Calendar extends React.Component {
             {this.createYearSelector()}
             < Month month={this.state.month} />
             {this.createMonthSelector()}
+            <Daynames />
 
             <div className='days-container'>
                 <span className='day null' id=''>

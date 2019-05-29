@@ -17,42 +17,7 @@ export default class App extends React.Component {
       user: {
         name: 'Pidgey',
       },
-      events: [{
-        id: 1,
-        name: 'Terrorize New Pokemon Trainers',
-        date: 5000000,
-        desc: 'win every match',
-        calender: 1,
-        user: 1
-      }, {
-        id: 2,
-        name: 'Start Your Server!',
-        date: 50000000,
-        desc: 'win every match',
-        calender: 1,
-        user: 1
-      }, {
-        id: 3,
-        name: 'No Server',
-        date: 500000000,
-        desc: 'win every match',
-        calender: 1,
-        user: 1
-      }, {
-        id: 4,
-        name: 'Please',
-        date: 500000000,
-        desc: 'win every match',
-        calender: 1,
-        user: 1
-      }, {
-        id: 5,
-        name: 'Help',
-        date: 5000000000,
-        desc: 'win every match',
-        calender: 1,
-        user: 1
-      }],
+      events: [],
       calendars: [],
       sidebar: false,
       createCalendar: false,
