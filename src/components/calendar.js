@@ -16,17 +16,16 @@ export default class Calendar extends React.Component {
         yearSelect: false,
         monthSelect: false,
         daySelect: false,
-        currentMonth: 5
     }
 
 
     //////////////////////////Testing purposes only
     createMay = () => {
-        // let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
         let monthDays = ['31', '28', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31']
 
         let may = []
-        for (let n = 0; n < monthDays[this.props.shownMonth]; n++) {
+        for (let n = 0; n < monthDays[this.monthAsInt()]; n++) {
             let date = new Date(`may ${n + 1}, 2019`)
             may.push({ id: date, num: n + 1, events: [] })
         }
@@ -37,7 +36,10 @@ export default class Calendar extends React.Component {
 
     // events={this.state.events.filter(event => parseInt(event.date) === this.state.spotlight.getTime())}
 
-
+    monthAsInt = () => {
+        let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        return months.indexOf(this.state.month)
+    }
 
     createDays = (spotlight) => {
         return this.createMay().map((day) => {
