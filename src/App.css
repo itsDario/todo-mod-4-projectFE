@@ -231,7 +231,25 @@ form.events-form input {
   width: 250px;
 }
 
+button.back-btn {
+  position: absolute;
+  z-index: 99;
+  top: 2px;
+  left: 5px;
+  background-color: transparent;
+  border-style: none;
+  padding: 0 0 0 0;
+}
 
+button.back-btn:hover {
+  height: 30px;
+  width: 42px;
+  transition: 1s;
+}
+
+h2.dock-hdr {
+  margin-top: 30px;
+}
 
 /* .App {
   text-align: center;

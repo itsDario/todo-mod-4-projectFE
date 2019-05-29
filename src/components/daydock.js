@@ -41,6 +41,7 @@ export default class DayDock extends React.Component {
     showDock = () => {
         if (!this.state.form) {
             return <Fragment>
+                <button className='back-btn' onClick={this.props.toggleDayDock}>&#8594;</button>
                 <h2>{this.props.spotlight.toDateString()}</h2>
                 <h2> Events </h2>
                 <ul className='events-list'>
@@ -51,7 +52,8 @@ export default class DayDock extends React.Component {
         }
         else if (this.state.form) {
             return <Fragment>
-                <h2>Create New Event</h2>
+                <button className='back-btn' onClick={this.props.toggleDayDock}>&#8594;</button>
+                <h2 className='dock-hdr'>Create New Event</h2>
                 <form className='events-form' onSubmit={this.submitEvent}>
                     <label>Name</label><br />
                     <input name='name' type='text' placeholder='Enter event name here...' /><br /><br />
