@@ -4,7 +4,6 @@ export default class DayDock extends React.Component {
 
     state = {
         form: false,
-        date: new Date(this.props.spotlight),
         events: [],
     }
 
@@ -42,7 +41,7 @@ export default class DayDock extends React.Component {
     showDock = () => {
         if (!this.state.form) {
             return <Fragment>
-                <h2>{this.state.date.toDateString()}</h2>
+                <h2>{this.props.spotlight.toDateString()}</h2>
                 <h2> Events </h2>
                 <ul className='events-list'>
                     {this.createEvents()}
