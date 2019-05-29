@@ -104,6 +104,7 @@ div.month {
 
 span.day {
   font-size: 32px;
+  height: 20%;
   flex-basis: 14.27%;
   box-sizing: border-box;
   border-style: solid;
