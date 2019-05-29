@@ -31,8 +31,12 @@ export default class Calendar extends React.Component {
 
 
     createDays = () => {
+        // events={this.state.events.filter(event => parseInt(event.date) === this.state.spotlight.getTime())}
+
         return this.createMay().map((day) => {
-            return < Day key={day.id.getTime()} day={{ ...day }} />
+            if (!!day) {
+                return < Day key={day.id.getTime()} day={{ ...day }} events={this.props.events.filter(event => parseInt(event.date) === day.id.getTime())} />
+            }
         })
     }
 
