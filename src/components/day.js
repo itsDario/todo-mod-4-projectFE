@@ -6,6 +6,8 @@ export default class Day extends React.Component {
         if (this.props.focus) {
             return <span className='focus' id={this.props.day.id}>
                 {this.props.day.num}
+                <br />
+                {this.props.events.length !== 0 ? this.eventMap() : ' '}
             </span>
         }
         else {
