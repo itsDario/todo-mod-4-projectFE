@@ -26,13 +26,18 @@ export default class Calendar extends React.Component {
 
         let may = []
         for (let n = 0; n < monthDays[this.monthAsInt()]; n++) {
-            let date = new Date(`may ${n + 1}, 2019`)
+            let date = new Date(`${this.state.month} ${n + 1}, 2019`)
             may.push({ id: date, num: n + 1, events: [] })
         }
         return may;
     }
     //////////////////////////
 
+    setMonth = (nmonth) => {
+        this.setState({
+            month: nmonth
+        })
+    }
 
     // events={this.state.events.filter(event => parseInt(event.date) === this.state.spotlight.getTime())}
 
@@ -65,7 +70,7 @@ export default class Calendar extends React.Component {
 
     createMonthSelector = () => {
         if (this.state.monthSelect) {
-            return < MonthSelector />
+            return < MonthSelector setMonth={this.setMonth} />
         }
         else {
             return null
