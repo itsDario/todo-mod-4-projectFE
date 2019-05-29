@@ -23,6 +23,7 @@ export default class App extends React.Component {
       createCalendar: false,
       daydock: false,
       spotlight: '',
+      shownMonth: new Date().getMonth(),
     }
 
     fetch('http://localhost:3000/events')
@@ -36,7 +37,6 @@ export default class App extends React.Component {
       .then(resj => this.setState({
         calendars: resj
       }))
-
   }
 
 
@@ -139,12 +139,13 @@ export default class App extends React.Component {
   }
 
   render() {
+
     return (
       <div className="App">
         < Navbar hamburgerBtn={this.hamburgerBtn} menuBtnState={this.state.menuBtn} username={this.state.user.name} />
         {this.openSidebar()}
         {this.openDayDock()}
-        < Calendar events={this.state.events} today={this.state.today} toggleDayDock={this.toggleDayDock} spotlight={this.state.spotlight === '' ? 0 : this.state.spotlight.getTime()} />
+        < Calendar shownMonth={this.state.shownMonth} events={this.state.events} today={this.state.today} toggleDayDock={this.toggleDayDock} spotlight={this.state.spotlight === '' ? 0 : this.state.spotlight.getTime()} />
       </div>
     );
   }

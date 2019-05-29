@@ -84,9 +84,8 @@ span.weekDayName{
   box-shadow: 2px 5px 5px #333;
 }
 
-div.eventName{
-  font-size: 20px;
-  display: block;
+.eventName{
+  font-size: 10px;
   /* flex-shrink: 2; */
 }
 
