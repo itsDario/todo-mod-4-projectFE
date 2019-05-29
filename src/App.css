@@ -110,9 +110,8 @@ span.day {
 }
 
 span.day:hover {
-  z-index: 99;
-
-  box-shadow: 4px 10px 15px 10px #333;
+  z-index: 98;
+  box-shadow: 4px 4px 15px 10px #333;
   transition: .3s
 }
 
@@ -122,10 +121,10 @@ span.focus {
   flex-basis: 14.27%;
   box-sizing: border-box;
   border-style: solid;
-  border-width: 4px;
+  border-width: 2.5px;
   border-color: black;
-  background-color: #BF8096;
-  box-shadow: 4px 10px 10px #333;
+  background-color: rgb(206, 121, 150);
+  box-shadow: 4px 4px 15px 10px #333;
 }
 
 .clearfix::after {
@@ -210,11 +209,13 @@ button.open-calendar-form {
 }
 
 button.create-event:hover {
-  background-color: rgb(221, 0, 0);
+  background-color: rgb(201, 6, 6);
+  transition: .5s;
 }
 
 button.open-calendar-form:hover {
-  background-color: rgb(221, 0, 0);
+  background-color: rgb(201, 6, 6);
+  transition: .5s;
 }
 
 form.events-form textarea {
