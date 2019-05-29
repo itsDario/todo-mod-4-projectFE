@@ -85,11 +85,11 @@ export default class App extends React.Component {
   }
 
   toggleDayDock = (dayID) => {
-    if (this.state.daydock === false && typeof dayID === 'string') {
+    if (typeof dayID === 'string') {
       this.setState({
         daydock: true,
         spotlight: new Date(dayID),
-      })
+      }, this.openDayDock)
     }
     else {
       this.setState({
@@ -114,7 +114,7 @@ export default class App extends React.Component {
       return null
     }
     else {
-      return < DayDock spotlight={this.state.spotlight} addEvent={this.addEvent} calendars={this.state.calendars} events={this.state.events.filter(event => parseInt(event.date) === this.state.spotlight.getTime())} />
+      return < DayDock spotlight={new Date(this.state.spotlight)} addEvent={this.addEvent} calendars={this.state.calendars} events={this.state.events.filter(event => parseInt(event.date) === this.state.spotlight.getTime())} />
     }
   }
 
