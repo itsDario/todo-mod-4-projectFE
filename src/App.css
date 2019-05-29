@@ -2,6 +2,7 @@
 html{
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 div.calendar { 
@@ -70,7 +71,6 @@ div.weekdays{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* align-content: stretch; */
   justify-content: left;
 }
 
@@ -110,6 +110,13 @@ span.day {
   box-shadow: 2px 5px 5px #333;
 }
 
+span.day:hover {
+  z-index: 99;
+
+  box-shadow: 4px 10px 15px 10px #333;
+  transition: .3s
+}
+
 span.focus {
   z-index: 99;
   font-size: 32px;
@@ -129,6 +136,7 @@ span.focus {
 }
 
 div.sidebar {
+  position: relative;
   display: block;
   float: left;
   width: 20vw;
@@ -143,6 +151,7 @@ div.sidebar {
 }
 
 div.daydock {
+  position: relative;
   display: block;
   float: right;
   width: 20vw;
@@ -183,9 +192,10 @@ button.create-event {
   position: absolute;
   display: block;
   bottom: 0;
-  width: 19.6vw;
-  margin-bottom: -.5vh;
-  border-style: none;
+  width: 100%;
+  border-top: solid 5px black;
+  border-right: solid 3px black;
+  border-bottom: solid 5px black;
   background-color: maroon;
 }
 
@@ -193,10 +203,19 @@ button.open-calendar-form {
   position: absolute;
   display: block;
   bottom: 0;
-  width: 19.6vw;
-  margin-bottom: -.5vh;
-  border-style: none;
+  width: 100%;
+  border-top: solid 5px black;
+  border-left: solid 3px black;
+  border-bottom: solid 5px black;
   background-color: maroon;
+}
+
+button.create-event:hover {
+  background-color: rgb(221, 0, 0);
+}
+
+button.open-calendar-form:hover {
+  background-color: rgb(221, 0, 0);
 }
 
 form.events-form textarea {
