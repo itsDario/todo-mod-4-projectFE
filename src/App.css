@@ -28,7 +28,7 @@ div.days-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
 }
 
 div.year {
@@ -71,11 +71,11 @@ div.weekdays{
   flex-direction: row;
   flex-wrap: wrap;
   /* align-content: stretch; */
-  justify-content: center;
+  justify-content: left;
 }
 
 span.weekDayName{
-  flex-basis: 14%;
+  flex-basis: 14.27%;
   box-sizing: border-box;
   border-style: solid;
   border-width: 1px;
@@ -95,7 +95,7 @@ div.month {
 
 span.day {
   font-size: 32px;
-  flex-basis: 14%;
+  flex-basis: 14.27%;
   box-sizing: border-box;
   border-style: solid;
   border-width: 1px;
