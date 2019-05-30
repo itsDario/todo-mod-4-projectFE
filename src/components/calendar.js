@@ -15,8 +15,17 @@ export default class Calendar extends React.Component {
         yearSelect: false,
         monthSelect: false,
         daySelect: false,
+        today: this.props.today
     }
 
+
+    componentDidMount() {
+        this.interval = setInterval(() => { this.setState({ today: Date(Date.now()) }) }, 1000)
+      }
+    
+    componentDidUnmount(){
+    clearInterval(this.interval)
+    }
 
     ////////////////////////// May is EVERY month now. Deal with it.
     createMay = () => {
@@ -59,6 +68,7 @@ export default class Calendar extends React.Component {
                 return < Day key={day.id.getTime()} day={{ ...day }} focus={false} events={this.props.events.filter(event => parseInt(event.date) === day.id.getTime())} />
             }
         })
+
         let empty1 = days[0].props.day.id.getDay()
         let empty2 = days[days.length-1].props.day.id.getDay()
 
@@ -113,7 +123,7 @@ export default class Calendar extends React.Component {
 
     render() {
         return <div className="calendar" onClick={this.handleClick}>
-            <h2 className='current'>Today is... {this.props.today}</h2>
+            <h2 className='current'>Today is... {this.state.today}</h2>
             < Year year={this.state.year} />
             {this.createYearSelector()}
             < Month month={this.state.month} />
@@ -124,7 +134,6 @@ export default class Calendar extends React.Component {
             </div>
         </div>
     }
-
 }
 
 

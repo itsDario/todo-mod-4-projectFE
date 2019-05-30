@@ -39,19 +39,6 @@ export default class App extends React.Component {
       }))
   }
 
-
-  componentDidMount() {
-    this.interval = setInterval(() => { this.setState({ today: Date(Date.now()) }) }, 1000)
-
-    fetch('http://localhost:3000/calenders')
-      .then(resp => resp.json())
-      .then(json => {
-        this.setState({
-          calendars: json
-        })
-      })
-  }
-
   hamburgerBtn = () => {
     this.setState({
       menuBtn: !this.state.menuBtn,
@@ -84,12 +71,16 @@ export default class App extends React.Component {
       })
   }
 
+<<<<<<< HEAD
   toggleDayDock = (dayID = null) => {
+=======
+  toggleDayDock = (dayID=null, nextState) => {
+>>>>>>> 96355ec29b303638cde15f0a4f35120915e6d3cc
     if (typeof dayID === 'string') {
       this.setState({
         daydock: true,
         spotlight: new Date(dayID),
-      }, this.openDayDock)
+      }, )
     }
     else {
       this.setState({
