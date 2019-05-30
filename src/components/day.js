@@ -1,40 +1,17 @@
 import React, { Fragment } from 'react'
 
-export default class Day extends React.Component{
+export default class Day extends React.Component {
 
-    state = {
-        focus: false,
+    render() {
+        return <span className={this.props.focus ? 'focus' : 'day'} id={this.props.day.id}>
+            {this.props.day.num}
+            <br />
+            <span className='eventName'>{this.props.events.length !== 0 ? this.eventMap() : ' '}</span>
+        </span>
+
     }
 
-    toggleFocus = () => {
-        this.setState({
-            focus: !this.state.focus
-        })
-    }
-
-    selectDay = () => {
-        // if (this.props.day.focus){
-        //     return <span className='focus' id={this.props.day.id} >
-        //         {this.props.day.num}
-        //     </span>
-        // }
-        // else{
-            if (!this.state.focus){
-                return <span className='day' id={this.props.day.id} onClick={this.toggleFocus}>
-                    {this.props.day.num}
-                </span>
-            }
-            else {
-                return <span className='focus' id={this.props.day.id} onClick={this.toggleFocus}>
-                {this.props.day.num}
-            </span>
-            }
-        }
-    // }
-
-    render(){
-        return <Fragment>
-            {this.selectDay()}
-        </Fragment>
+    eventMap() {
+        return this.props.events.map((e, i) => i < 6 ? <div className='eventName'>{e.name}</div> : <span></span>)
     }
 }

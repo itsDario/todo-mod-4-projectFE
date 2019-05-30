@@ -40,8 +40,11 @@ const Sidebar = (props) => {
     }
 
     const createEvents = () => {
-        return props.events.map(event => {
-            return <li key={event.id}>{event.name}</li>
+        // eslint-disable-next-line
+        return props.events.map((event, index) => {
+            if (index < 5) {
+                return <li key={event.id}>{event.name}</li>
+            }
         })
     };
 

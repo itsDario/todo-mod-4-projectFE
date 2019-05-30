@@ -17,47 +17,13 @@ export default class App extends React.Component {
       user: {
         name: 'Pidgey',
       },
-      events: [{
-        id: 1,
-        name: 'Terrorize New Pokemon Trainers',
-        date: 5000000,
-        desc: 'win every match',
-        calender: 1,
-        user: 1
-      }, {
-        id: 2,
-        name: 'Start Your Server!',
-        date: 50000000,
-        desc: 'win every match',
-        calender: 1,
-        user: 1
-      }, {
-        id: 3,
-        name: 'No Server',
-        date: 500000000,
-        desc: 'win every match',
-        calender: 1,
-        user: 1
-      }, {
-        id: 4,
-        name: 'Please',
-        date: 500000000,
-        desc: 'win every match',
-        calender: 1,
-        user: 1
-      }, {
-        id: 5,
-        name: 'Help',
-        date: 5000000000,
-        desc: 'win every match',
-        calender: 1,
-        user: 1
-      }],
+      events: [],
       calendars: [],
       sidebar: false,
       createCalendar: false,
       daydock: false,
       spotlight: '',
+      shownMonth: new Date().getMonth(),
     }
 
     fetch('http://localhost:3000/events')
@@ -71,7 +37,6 @@ export default class App extends React.Component {
       .then(resj => this.setState({
         calendars: resj
       }))
-
   }
 
 
@@ -97,11 +62,11 @@ export default class App extends React.Component {
   addEvent = (event) => {
     event.persist()
     event.preventDefault()
-    // console.log(event.target.name.value)
-    // console.log(event.target.desc.value)
-    // console.log(date)
 
+<<<<<<< HEAD
     let nevents = [...this.state.events, ]
+=======
+>>>>>>> 50bb016008b79817a538c25d7a5b29eb69b16310
     fetch('http://localhost:3000/events', {
       method: 'POST',
       headers: {
@@ -117,19 +82,13 @@ export default class App extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        nevents.push({
-          id: res['id'],
-          name: event.target.name.value,
-          calender: 1,
-          user: 1,
-          description: event.target.desc.value
-        })
         this.setState({
-          events: nevents
+          events: [...this.state.events, res]
         })
       })
   }
 
+<<<<<<< HEAD
   toggleDayDock = (dayID) => {
     console.log(new Date(dayID).getTime())
     if (this.state.daydock === false) {
@@ -137,6 +96,14 @@ export default class App extends React.Component {
         daydock: true,
         spotlight: new Date(dayID),
       }, ()=>console.log(this.state.spotlight.getTime()))
+=======
+  toggleDayDock = (dayID=null) => {
+    if (typeof dayID === 'string') {
+      this.setState({
+        daydock: true,
+        spotlight: new Date(dayID),
+      }, this.openDayDock)
+>>>>>>> 50bb016008b79817a538c25d7a5b29eb69b16310
     }
     else {
       this.setState({
@@ -161,7 +128,7 @@ export default class App extends React.Component {
       return null
     }
     else {
-      return < DayDock spotlight={this.state.spotlight} addEvent={this.addEvent} calendars={this.state.calendars} events={this.state.events.filter(event => parseInt(event.date) === this.state.spotlight.getTime())} />
+      return < DayDock spotlight={new Date(this.state.spotlight)} addEvent={this.addEvent} calendars={this.state.calendars} events={this.state.events.filter(event => parseInt(event.date) === this.state.spotlight.getTime())} toggleDayDock={this.toggleDayDock}/>
     }
   }
 
@@ -186,16 +153,25 @@ export default class App extends React.Component {
   }
 
   render() {
+
     return (
       <div className="App">
         < Navbar hamburgerBtn={this.hamburgerBtn} menuBtnState={this.state.menuBtn} username={this.state.user.name} />
         {this.openSidebar()}
         {this.openDayDock()}
+<<<<<<< HEAD
         < Calendar today={this.state.today} toggleDayDock={this.toggleDayDock} spotlight={this.state.spotlight}/>
+=======
+        < Calendar events={this.state.events} today={this.state.today} toggleDayDock={this.toggleDayDock} spotlight={this.state.spotlight === '' ? 0 : this.state.spotlight.getTime()} />
+>>>>>>> 50bb016008b79817a538c25d7a5b29eb69b16310
       </div>
     );
   }
 }
+
+
+
+//this.state.spotlight format is '...Wed May 01 2019 00:00:00 GMT-0400...'
 
 //use spotlight state to highlight day being viewed
 

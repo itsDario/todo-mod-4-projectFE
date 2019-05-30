@@ -24,13 +24,12 @@ div.calendar {
 
 
 div.days-container {
-  width: 100%;
+  flex-basis: 100%;
   height: 82%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* align-content: stretch; */
-  justify-content: center;
+  justify-content: left;
 }
 
 div.year {
@@ -67,6 +66,33 @@ div.monthselector {
   color: white;
 }
 
+.monthButton{
+  width: 30%;
+}
+
+div.weekdays{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+span.weekDayName{
+  flex-basis: 14.27%;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  background-color: #BF8096;
+  box-shadow: 2px 5px 5px #333;
+}
+
+.eventName{
+  font-size: 10px;
+  /* flex-shrink: 2; */
+}
+
 div.month {
   font-size: 20px;
   flex-basis: 100%;
@@ -78,7 +104,8 @@ div.month {
 
 span.day {
   font-size: 32px;
-  flex-basis: 14.2857142857%;
+  height: 20%;
+  flex-basis: 14.27%;
   box-sizing: border-box;
   border-style: solid;
   border-width: 1px;
@@ -87,16 +114,22 @@ span.day {
   box-shadow: 2px 5px 5px #333;
 }
 
+span.day:hover {
+  z-index: 98;
+  box-shadow: 4px 4px 15px 10px #333;
+  transition: .3s
+}
+
 span.focus {
   z-index: 99;
   font-size: 32px;
-  flex-basis: 14.2857142857%;
+  flex-basis: 14.27%;
   box-sizing: border-box;
   border-style: solid;
-  border-width: 3px;
+  border-width: 2.5px;
   border-color: black;
-  background-color: rgb(231, 156, 187);
-  box-shadow: 4px 10px 10px #333;
+  background-color: rgb(206, 121, 150);
+  box-shadow: 4px 4px 15px 10px #333;
 }
 
 .clearfix::after {
@@ -164,8 +197,7 @@ button.create-event {
   bottom: 0;
   width: 100%;
   border-top: solid 5px black;
-  border-right: solid 5px black;
-  border-left: 0;
+  border-right: solid 3px black;
   border-bottom: solid 5px black;
   background-color: maroon;
 }
@@ -176,18 +208,19 @@ button.open-calendar-form {
   bottom: 0;
   width: 100%;
   border-top: solid 5px black;
-  border-left: solid 5px black;
-  border-right: 0;
+  border-left: solid 3px black;
   border-bottom: solid 5px black;
   background-color: maroon;
 }
 
-button.open-calendar-form:hover {
-  background-color: rgb(190, 0, 0)
+button.create-event:hover {
+  background-color: rgb(201, 6, 6);
+  transition: .5s;
 }
 
-button.create-event:hover {
-  background-color: rgb(190, 0, 0)
+button.open-calendar-form:hover {
+  background-color: rgb(201, 6, 6);
+  transition: .5s;
 }
 
 form.events-form textarea {
@@ -203,7 +236,35 @@ form.events-form input {
   width: 250px;
 }
 
+button.back-btn {
+  display: block;
+  position: absolute;
+  z-index: 99;
+  top: 2px;
+  left: 5px;
+  background-color: transparent;
+  border-style: none;
+  padding: 0 0 0 0;
+}
 
+button.back-btn:hover {
+  animation: back-button-swoosh infinite 1s linear;
+}
+
+@keyframes back-button-swoosh {
+  from {width: 10px;}
+  to {width: 65px;}
+}
+
+/* button.back-btn:hover button:after {
+  padding: 0 0 0 0;
+  left: 5px;
+  transition: 0s;
+} */
+
+h2.dock-hdr {
+  margin-top: 30px;
+}
 
 /* .App {
   text-align: center;
