@@ -4,13 +4,6 @@ export default class DayDock extends React.Component {
 
     state = {
         form: false,
-        events: [],
-    }
-
-    componentDidMount(){
-        this.setState({
-            events: this.props.events
-        })
     }
 
     createOptions = () => {
@@ -22,7 +15,7 @@ export default class DayDock extends React.Component {
     }
 
     createEvents = () => {
-        return this.state.events.map((event)=>{
+        return this.props.events.map((event)=>{
             return <li key={event.id}>
                 <div>Name: {event.name}</div>
                 <div>{event.description === null ? 'No Description' : `Description: ${event.description}`}</div>
@@ -37,7 +30,6 @@ export default class DayDock extends React.Component {
         this.props.addEvent(event)
         this.setState({
             form: false,
-            events: [...this.state.events, {user: 1, calendar: 1, date: this.state.date, description: event.target.desc.value, name: event.target.name.value}]
         })
         return null
     }
