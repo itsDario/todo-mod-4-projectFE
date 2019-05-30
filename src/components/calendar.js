@@ -18,14 +18,14 @@ export default class Calendar extends React.Component {
     }
 
 
-    //////////////////////////Testing purposes only
+    ////////////////////////// May is EVERY month now. Deal with it.
     createMay = () => {
 
         let monthDays = ['31', '28', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31']
 
         let may = []
         for (let n = 0; n < monthDays[this.monthAsInt()]; n++) {
-            let date = new Date(`${this.state.month} ${n + 1}, 2019`)
+            let date = new Date(`${this.state.month} ${n + 1}, ${this.state.year}`)
             may.push({ id: date, num: n + 1, events: [] })
         }
         return may;
@@ -35,6 +35,12 @@ export default class Calendar extends React.Component {
     setMonth = (nmonth) => {
         this.setState({
             month: nmonth
+        })
+    }
+
+    setYear = (nyear) => {
+        this.setState({
+            year: nyear
         })
     }
 
@@ -70,7 +76,7 @@ export default class Calendar extends React.Component {
 
     createYearSelector = () => {
         if (this.state.yearSelect) {
-            return < YearSelector />
+            return < YearSelector year={parseInt(this.state.year)} setYear={this.setYear} />
         }
         else {
             return null
@@ -92,7 +98,6 @@ export default class Calendar extends React.Component {
             monthSelect: false,
             daySelect: false,
         })
-        
 
         if (event.target.className === 'yearbtn') {
             this.setState({ yearSelect: true }, this.props.toggleDayDock)
@@ -126,3 +131,28 @@ export default class Calendar extends React.Component {
 // daysArr = ['31', '28', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31']
 // monthsArr = ['January',' February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 // monthsShortArr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+
+////////Experimental
+
+        // let stateKey;
+
+        // switch (event.target.className){
+        //     case 'yearbtn':
+        //         stateKey = yearSelect;
+        //     break;
+        //     case 'monthbtn':
+        //         stateKey = monthSelect;
+        //     break;
+        //     case 'daybtn':
+        //         stateKey = daySelect;
+        //     break;
+        //     default:
+        //         null
+        // }
+
+        // this.setState({
+        //     [stateKey]: true
+        // })
+        
+////////

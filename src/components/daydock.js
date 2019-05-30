@@ -23,7 +23,6 @@ export default class DayDock extends React.Component {
 
     createEvents = () => {
         return this.state.events.map((event)=>{
-            // debugger;
             return <li key={event.id}>
                 <div>Name: {event.name}</div>
                 <div>{event.description === null ? 'No Description' : `Description: ${event.description}`}</div>

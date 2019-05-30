@@ -1,11 +1,20 @@
 import React from 'react'
 
-const YearSelector = () => {
+const YearSelector = (props) => {
+    
+    const createYearSelector = (year) => {
+        let yearArr = []
+        for (let n=year-6; n < year+6; n++){
+            yearArr.push(n)
+        }
 
-
+        return yearArr.map((year)=>{
+            return <button className='yearButton' name={year} onClick={e => props.setYear(e.target.name)}>{year}</button>
+        })
+    }
 
     return <div className='yearselector'>
-        <h1>Year Selector</h1>
+        {createYearSelector(props.year)}
     </div>
 }
 
