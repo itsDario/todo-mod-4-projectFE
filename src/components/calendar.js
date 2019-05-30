@@ -52,24 +52,23 @@ export default class Calendar extends React.Component {
     createDays = (spotlight) => {
 
         let days = this.createMay().map((day) => {
-            if (!!day) {
-                if (spotlight === day.id.getTime()) {
-                    return < Day key={day.id.getTime()} day={{ ...day }} focus={true} events={this.props.events.filter(event => parseInt(event.date) === day.id.getTime())} />
-                }
-                else {
-                    return < Day key={day.id.getTime()} day={{ ...day }} focus={false} events={this.props.events.filter(event => parseInt(event.date) === day.id.getTime())} />
-                }
-            }    
+            if (spotlight === day.id.getTime()) {
+                return < Day key={day.id.getTime()} day={{ ...day }} focus={true} events={this.props.events.filter(event => parseInt(event.date) === day.id.getTime())} />
+            }
+            else {
+                return < Day key={day.id.getTime()} day={{ ...day }} focus={false} events={this.props.events.filter(event => parseInt(event.date) === day.id.getTime())} />
+            }
         })
         let empty1 = days[0].props.day.id.getDay()
         let empty2 = days[days.length-1].props.day.id.getDay()
 
         for(let n = 0; n < empty1; n++){
-            days.unshift(<span className='day null' id='' />);
+            days.unshift(<span key={`${n}null`} className='day null' id='' />);
         }
         for(let n = 0; n < 6-empty2; n++){
-            days.push(<span className='day null' id='' />)
+            days.push(<span key={`null${n}`} className='day null' id='' />)
         }
+
         return days
 
     }
@@ -93,20 +92,22 @@ export default class Calendar extends React.Component {
     }
 
     handleClick = (event) => {
-        this.setState({
-            yearSelect: false,
-            monthSelect: false,
-            daySelect: false,
-        })
+        if (event.target.className !== 'prev-page-btn' && event.target.className !== 'next-page-btn'){
+            this.setState({
+                yearSelect: false,
+                monthSelect: false,
+                daySelect: false,
+            })
 
-        if (event.target.className === 'yearbtn') {
-            this.setState({ yearSelect: true }, this.props.toggleDayDock)
-        }
-        else if (event.target.className === 'monthbtn') {
-            this.setState({ monthSelect: true }, this.props.toggleDayDock)
-        }
-        else if ((event.target.className === 'day' || event.target.className === 'focus') && event.target.className !== 'null') {
-            this.setState({ daySelect: true }, this.props.toggleDayDock(event.target.id))
+            if (event.target.className === 'yearbtn') {
+                this.setState({ yearSelect: true }, this.props.toggleDayDock)
+            }
+            else if (event.target.className === 'monthbtn') {
+                this.setState({ monthSelect: true }, this.props.toggleDayDock)
+            }
+            else if ((event.target.className === 'day' || event.target.className === 'focus') && event.target.className !== 'null') {
+                this.setState({ daySelect: true }, this.props.toggleDayDock(event.target.id))
+            }
         }
     }
 

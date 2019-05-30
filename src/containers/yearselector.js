@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const YearSelector = (props) => {
+
+    const [yearSelectorPage, setyearSelectorPage] = useState(props.year)
+
+    // useEffect(()=>{
+
+    // })
     
     const createYearSelector = (year) => {
         let yearArr = []
@@ -14,7 +20,9 @@ const YearSelector = (props) => {
     }
 
     return <div className='yearselector'>
-        {createYearSelector(props.year)}
+        {createYearSelector(yearSelectorPage)}
+        <button onClick={()=>setyearSelectorPage(yearSelectorPage-12)} className='prev-page-btn'>&#8668;</button>
+        <button onClick={()=>setyearSelectorPage(yearSelectorPage+12)} className='next-page-btn'>&#8669;</button>
     </div>
 }
 

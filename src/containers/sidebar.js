@@ -44,6 +44,9 @@ const Sidebar = (props) => {
             if (index < 5) {
                 return <li key={event.id}>{event.name}</li>
             }
+            else{
+                return null
+            }
         })
     };
 
