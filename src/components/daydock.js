@@ -13,13 +13,6 @@ export default class DayDock extends React.Component {
         })
     }
 
-    // componentDidUpdate(prevProps){
-    //     if (this.props.events !== prevProps.events)
-    //     this.setState({
-    //         events: this.props.events
-    //     })
-    // }
-
     createOptions = () => {
         return this.props.calendars.map((calendar) => {
             return <option key={calendar.id} value={calendar.id}>

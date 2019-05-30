@@ -40,7 +40,6 @@ const Sidebar = (props) => {
     }
 
     const createEvents = () => {
-        // eslint-disable-next-line
         return props.events.map((event, index) => {
             if (index < 5) {
                 return <li key={event.id}>{event.name}</li>
@@ -60,18 +59,3 @@ const Sidebar = (props) => {
 }
 
 export default Sidebar;
-
-
-
-    // const submitCalendar = () => {
-    //     // fetch('http://localhost:3000/calendars', {
-    //     //     method: "POST",
-    //     //     headers: {
-
-    //     //     },
-    //     //     body: JSON.stringify({
-
-    //     //     })
-    //     // })
-
-    // }

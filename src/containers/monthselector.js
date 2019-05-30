@@ -2,12 +2,23 @@ import React from 'react'
 
 const MonthSelector = (props) => {
 
+    const monthsArr = ['January',' February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    const monthsShortArr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-    console.log(props);
-
+    const createMonthSelector = () => {
+        return monthsArr.map((month, index)=>{
+            return <button className='monthButton' name={month} onClick={e => props.setMonth(e.target.name)}>{monthsShortArr[index]}</button>
+        })
+    }
+    
     return <div className='monthselector'>
+        {createMonthSelector()}
+    </div>
+}
 
-        <div>
+export default MonthSelector;
+
+        {/* <div>
             <button className='monthButton' name='January' onClick={e => props.setMonth(e.target.name)}>Jan</button>
             <button className='monthButton' name='February' onClick={e => props.setMonth(e.target.name)}>Feb</button>
             <button className='monthButton' name='March' onClick={e => props.setMonth(e.target.name)}>Mar</button>
@@ -26,8 +37,4 @@ const MonthSelector = (props) => {
             <button className='monthButton' name='October' onClick={e => props.setMonth(e.target.name)}> Oct</button>
             <button className='monthButton' name='November' onClick={e => props.setMonth(e.target.name)}> Nov</button>
             <button className='monthButton' name='December' onClick={e => props.setMonth(e.target.name)}> Dec</button>
-        </div>
-    </div>
-}
-
-export default MonthSelector;
+        </div> */}

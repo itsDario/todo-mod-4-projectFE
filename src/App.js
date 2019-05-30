@@ -63,10 +63,6 @@ export default class App extends React.Component {
     event.persist()
     event.preventDefault()
 
-<<<<<<< HEAD
-    let nevents = [...this.state.events, ]
-=======
->>>>>>> 50bb016008b79817a538c25d7a5b29eb69b16310
     fetch('http://localhost:3000/events', {
       method: 'POST',
       headers: {
@@ -88,22 +84,12 @@ export default class App extends React.Component {
       })
   }
 
-<<<<<<< HEAD
-  toggleDayDock = (dayID) => {
-    console.log(new Date(dayID).getTime())
-    if (this.state.daydock === false) {
-      this.setState({
-        daydock: true,
-        spotlight: new Date(dayID),
-      }, ()=>console.log(this.state.spotlight.getTime()))
-=======
   toggleDayDock = (dayID=null) => {
     if (typeof dayID === 'string') {
       this.setState({
         daydock: true,
         spotlight: new Date(dayID),
       }, this.openDayDock)
->>>>>>> 50bb016008b79817a538c25d7a5b29eb69b16310
     }
     else {
       this.setState({
@@ -159,11 +145,7 @@ export default class App extends React.Component {
         < Navbar hamburgerBtn={this.hamburgerBtn} menuBtnState={this.state.menuBtn} username={this.state.user.name} />
         {this.openSidebar()}
         {this.openDayDock()}
-<<<<<<< HEAD
-        < Calendar today={this.state.today} toggleDayDock={this.toggleDayDock} spotlight={this.state.spotlight}/>
-=======
         < Calendar events={this.state.events} today={this.state.today} toggleDayDock={this.toggleDayDock} spotlight={this.state.spotlight === '' ? 0 : this.state.spotlight.getTime()} />
->>>>>>> 50bb016008b79817a538c25d7a5b29eb69b16310
       </div>
     );
   }
