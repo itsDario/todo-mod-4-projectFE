@@ -84,7 +84,7 @@ export default class App extends React.Component {
       })
   }
 
-  toggleDayDock = (dayID=null) => {
+  toggleDayDock = (dayID = null) => {
     if (typeof dayID === 'string') {
       this.setState({
         daydock: true,
@@ -114,7 +114,7 @@ export default class App extends React.Component {
       return null
     }
     else {
-      return < DayDock spotlight={new Date(this.state.spotlight)} addEvent={this.addEvent} calendars={this.state.calendars} events={this.state.events.filter(event => parseInt(event.date) === this.state.spotlight.getTime())} toggleDayDock={this.toggleDayDock}/>
+      return < DayDock spotlight={new Date(this.state.spotlight)} addEvent={this.addEvent} calendars={this.state.calendars} events={this.state.events.filter(event => parseInt(event.date) === this.state.spotlight.getTime())} toggleDayDock={this.toggleDayDock} />
     }
   }
 
@@ -132,10 +132,11 @@ export default class App extends React.Component {
       })
     })
       .then(res => res.json())
-      .then(console.log)
-    this.setState({
-      calendars: [...this.state.calendars, { id: this.state.calendars.length + 1, name: event.target.name.value }]
-    })
+      .then(() => {
+        this.setState({
+          calendars: [...this.state.calendars, { id: this.state.calendars.length + 1, name: event.target.name.value }]
+        })
+      })
   }
 
   render() {

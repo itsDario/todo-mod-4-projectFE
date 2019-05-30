@@ -5,8 +5,7 @@ export default class Day extends React.Component {
     render() {
         return <span key={this.props.day.id} className={this.props.focus ? 'focus' : 'day'} id={this.props.day.id}>
             {this.props.day.num}
-            <br />
-            <span key={this.props.day.id} className='eventName'>{this.props.events.length !== 0 ? this.eventMap() : ' '}</span>
+            <br />{this.props.events.length !== 0 ? this.eventMap() : ' '}
         </span>
 
     }
