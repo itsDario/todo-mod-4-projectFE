@@ -15,7 +15,7 @@ export default class Calendar extends React.Component {
         yearSelect: false,
         monthSelect: false,
         daySelect: false,
-        today: this.props.today
+        today: this.props.today,
     }
 
 
@@ -73,10 +73,10 @@ export default class Calendar extends React.Component {
         let empty2 = days[days.length-1].props.day.id.getDay()
 
         for(let n = 0; n < empty1; n++){
-            days.unshift(<span key={`${n}null`} className='day null' id='' />);
+            days.unshift(<span key={`${n}null`} className='day null' />);
         }
         for(let n = 0; n < 6-empty2; n++){
-            days.push(<span key={`null${n}`} className='day null' id='' />)
+            days.push(<span key={`null${n}`} className='day null' />)
         }
 
         return days

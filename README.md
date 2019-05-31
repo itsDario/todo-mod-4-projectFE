@@ -62,6 +62,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ad
 ### Deployment
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Created by Dario and Jeffrey Yu. Github usernames: 'itsDario' and 'jwy5140'
 
 ### `npm run build` fails to minify
 

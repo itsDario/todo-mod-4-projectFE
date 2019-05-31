@@ -7,7 +7,7 @@ span.UserDash{
     font-size: 20px;
     float: right;
 }
-/*  */
+
 button {
     text-align: center;
     font-size: 24px;
@@ -30,8 +30,22 @@ div.Navbar{
     box-shadow: 2px 5px 5px #333;
 }
 
-/* span.title {
-    font-size: 36px;
-    margin-left: 600px;
+div.the-almighty-god-pokemon {
+    z-index: 99;
     color: white;
-} */
+    font-weight: bold;
+    position: absolute;
+    left: 12%;
+    top: 30%;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 98;
+    opacity: .5;
+    background-color: black;
+  }

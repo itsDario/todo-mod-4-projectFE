@@ -146,13 +146,19 @@ span.day {
 }
 
 span.day:hover {
-  z-index: 98;
+  z-index: 97;
   box-shadow: 4px 4px 15px 10px #333;
   transition: .3s
 }
 
+span.null:hover {
+  z-index: 0;
+  box-shadow: none;
+  transition: 0s;
+}
+
 span.focus {
-  z-index: 99;
+  z-index: 98;
   font-size: 32px;
   flex-basis: 14.27%;
   box-sizing: border-box;
@@ -327,4 +333,6 @@ button.next-page-btn:active {
 .eventName {
   pointer-events: none;
 }
+
+
 

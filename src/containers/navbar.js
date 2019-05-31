@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, Fragment } from 'react';
 import '../hamburgers.css';
 import '../navbar.css';
 
+
 const Navbar = (props) => {
+
+    const [pidgeyPic, setpidgeyPic] = useState(false)
 
     const clickBtn = () => {
 
@@ -24,11 +27,31 @@ const Navbar = (props) => {
         }
     }
 
+    const hahaYouAreAlwaysPidgey = () => {
+        setpidgeyPic(!pidgeyPic)
+    }
+
+    const showPidgey = () => {
+        if (pidgeyPic){
+            return <Fragment>
+                <div className='overlay' onClick={hahaYouAreAlwaysPidgey}></div>
+                <div className='the-almighty-god-pokemon'>
+                    <h2>Sorry! In this version of the App, you are ALWAYS Pidgey...but that's a good thing!</h2>
+                    <img src='https://media3.giphy.com/media/bkxLFDUMB5RLy/giphy.gif'/>
+                </div>
+            </Fragment>
+        }
+        else{
+            return null
+        }
+    }
+
     const userDash = () => {
 
         return <span className='UserDash'>
-            <button className='messages' onClick={()=>{alert('Goes To Messages')}}>Messages</button>
-            <button onClick={()=>{alert('Opens User Drawdown')}}>Welcome {props.username}!</button>
+            <button className='messages' onClick={()=>{alert(`Sorry - you have no friends in this version of the App :'(`, `:'(`)}}>Messages</button>
+            <button className='user-profile' onClick={hahaYouAreAlwaysPidgey}>Welcome {props.username}!</button>
+            {showPidgey()}
         </span>
     }
 

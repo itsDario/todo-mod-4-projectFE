@@ -71,11 +71,7 @@ export default class App extends React.Component {
       })
   }
 
-<<<<<<< HEAD
   toggleDayDock = (dayID = null) => {
-=======
-  toggleDayDock = (dayID=null, nextState) => {
->>>>>>> 96355ec29b303638cde15f0a4f35120915e6d3cc
     if (typeof dayID === 'string') {
       this.setState({
         daydock: true,
@@ -111,6 +107,7 @@ export default class App extends React.Component {
 
   addCalendar = (event) => {
     event.preventDefault()
+    event.persist()
 
     fetch(`http://localhost:3000/calenders`, {
       method: 'POST',
@@ -130,11 +127,12 @@ export default class App extends React.Component {
       })
   }
 
+
   render() {
 
     return (
       <div className="App">
-        < Navbar hamburgerBtn={this.hamburgerBtn} menuBtnState={this.state.menuBtn} username={this.state.user.name} />
+        < Navbar hamburgerBtn={this.hamburgerBtn} menuBtnState={this.state.menuBtn} username={this.state.user.name}/>
         {this.openSidebar()}
         {this.openDayDock()}
         < Calendar events={this.state.events} today={this.state.today} toggleDayDock={this.toggleDayDock} spotlight={this.state.spotlight === '' ? 0 : this.state.spotlight.getTime()} />
